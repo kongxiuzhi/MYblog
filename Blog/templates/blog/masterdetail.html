@@ -1,0 +1,49 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Campatible" content="IE=edge">
+        <meta name="viewport" content="width=divice-width,initial-scale=1">
+        <title>This me block</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/mycustom.css'%}">
+
+    </head>
+    <body>
+        <h1 class="text-center">{{master.job}}担当</h1>
+        <table style="boder: 1px solid ;margin:auto;font-size: 20px">
+                    <tr>
+                        <td>姓名：</td>
+                        <td>{{ master.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>工号：</td>
+                        <td>{{ master.jobnum }}</td>
+                    </tr>
+                    <tr>
+                        <td>电话：</td>
+                        <td>{{ master.mobile }}</td>
+                    </tr>
+                     <tr>
+                        <td>邮箱：</td>
+                        <td>{{ master.email }}</td>
+                    </tr>
+                    {%if master.where %}
+                    <tr>
+                        <td>是否上班：</td>
+                        <td>{{ master.where }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if master.others %}
+                    <tr>
+                         <td colspan='2'>{{master.others}}</td>
+                    </tr>
+                    {% endif %}
+        </table>
+        <script type="text/javascript" src="{% static 'js/jquery.min.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js'%}"></script>
+       </body>
+ </html>
+

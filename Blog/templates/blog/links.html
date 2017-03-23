@@ -1,0 +1,15 @@
+{% load staticfiles %}
+
+
+	<div class="row text-center links ">
+	<h3 class="text-left">推荐链接</h3>
+        {% for link in links%}
+		<div class="col-sm-3">
+            <a href={{link.callback_url}}>
+			<img src="{{link.picurl.url}}" class="img-circle blockcenter" height="55" width="55">
+            <p>{{link.title}}</p>
+            </a>
+		</div>
+        {% endfor %}
+	</div>
+

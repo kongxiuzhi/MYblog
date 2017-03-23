@@ -1,0 +1,8 @@
+<div class="row recommendarticle">
+	<h3>推荐文章</h3>
+	<ol>
+		{% for article in recommend_articles %}
+			<li><a href="{{article.get_absolute_url}}">{{article.title}}</a></li>
+		{% endfor%}
+	</ol>
+</div>

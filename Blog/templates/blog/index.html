@@ -1,0 +1,96 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block selfcss %}
+ <style type="text/css">
+ 
+ </style>
+{%endblock%}
+
+{% block navbar %}
+    {% include 'blog/navbar.html'%}
+<!--
+
+	 <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid clearfix">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target="#responsive-navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand"><strong>BLOG</strong></a>
+                </div>
+               
+                <div class="collapse navbar-collapse" id="responsive-navbar">
+                    <ul class="nav navbar-nav">
+                    <li class="active"><a href="">导航1</a></li>
+                    <li><a href="">导航2</a></li>
+                    <li ><a href="">导航3</a></li>
+                    </ul>
+
+        <form action="" class="navbar-form navbar-left">
+                    <input type="text" placeholder="搜索" class="form-control">
+                    <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+                <div style="width:40px;"class="navbar-right"></div>
+               <a href="" class="btn btn-primary btn-sm navbar-btn navbar-right hidden-xs">占个坑</a>
+                <div class="profile navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{%url 'blog:login'%}">登录</a></li>
+                        <li><a href="{%url 'blog:regist'%}">注册</a></li>
+                        <li><a href="{%url 'blog:logout'%}">退出</a></li>
+                    </ul> 
+                    <p class="navbar-text">您好，<a href="" class="navbar-link">{{username}}</a></p>
+                </div>
+                </div>
+            </div>
+
+               </nav> -->
+{% endblock %}
+
+{% block leftbar %}
+    {% include "blog/ad.html" %}
+	{% for article in page %}
+        <div class="blogs">
+            <ul>
+                <h3><a href="{{article.get_absolute_url}}">{{ article.title }}</a></h3>
+                <p>{{ article.desc }}</p>
+                <p><span>
+                {% for tag in article.tag.all %}
+                {{tab.name}}
+                {% endfor %}
+                </span>
+                </p>
+                <p>
+		<table>
+			<tr>
+				<td>
+                    {% if article.user is not None  %}
+					<div><img src="{{article.user.avatar.url}}" height="50" width="50" class="img-circle"></div>
+                    {%else%}
+					<div><img src="{% static 'images/05.jpg'%}" height="50" width="50" class="img-circle"></div>
+                    {% endif %}
+					<p>{{ article.user }}</p>
+				</td>
+				<td>
+			    <span>&nbsp 发表与 {{article.date_publish |date:'Y-m-d H:i:s'}}</span>
+				</td>
+			</tr>
+            </table>
+                <span class="fright"><img src="{% static 'images/newsbg04.png'%}">浏览({{article.click_count}})</span>
+                <span class="fright"><img src="{% static 'images/newsbg03.png'%}"> 评论({{article.comnum}}) &nbsp</span>
+            </ul>
+        </div>
+    {% endfor %}
+ 
+    {% include 'blog/paginator.html' %}
+
+{% endblock %}
+
+{% block rightbar %}
+	{% include 'blog/links.html'%}
+    {% include 'blog/recommendarticle.html' %}
+    {% include 'blog/master.html'%}
+{% endblock %}
+

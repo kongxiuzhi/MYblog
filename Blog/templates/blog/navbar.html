@@ -1,0 +1,36 @@
+
+	 <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid clearfix">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target="#responsive-navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand"><strong>BLOG</strong></a>
+                </div>
+               
+                <div class="collapse navbar-collapse" id="responsive-navbar">
+                    <ul class="nav navbar-nav">
+                    <li><a href="{% url 'blog:indexview'%}">HOME</a></li>
+                    <li><a href="{% url 'blog:event'%}">提交故障</a></li>
+                    <li ><a href="">导航3</a></li>
+                    </ul>
+
+        <form action="" class="navbar-form navbar-left">
+                    <input type="text" placeholder="搜索" class="form-control">
+                    <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+                <div style="width:40px;"class="navbar-right"></div>
+               <!-- <a href="" class="btn btn-primary btn-sm navbar-btn navbar-right hidden-xs">占个坑</a>-->
+                <div class="profile navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{%url 'blog:login'%}">登录</a></li>
+                        <li><a href="{%url 'blog:regist'%}">注册</a></li>
+                        <li><a href="{%url 'blog:logout'%}">退出</a></li>
+                    </ul> 
+                    <p class="navbar-text">您好，<a href="{%url 'blog:event'%}" class="navbar-link">{{username}}</a></p>
+                </div>
+                </div>
+            </div>
+</nav>

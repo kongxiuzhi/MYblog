@@ -1,0 +1,19 @@
+{% load  staticfiles %}
+<div id="myCarousel" class="carousel slide" data-ride='carousel'>
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide="prev" ></li>
+		<li data-target="#myCarousel" data-slide="next"></li>
+	</ol>
+	<div class="carousel-inner">
+        {% for ad in ads  %}
+        {% if forloop.counter == 1 %}
+		<div class="item active">
+        {%else%}
+        <div class="item">
+        {%endif%}
+			<img src="{{ad.picurl.url}}" alt="Picture" class="blockcenter img-responsive">
+			<div class="carousel-caption">{{ad.title}}</div>
+		</div>
+        {% endfor %}
+	</div>
+</div>

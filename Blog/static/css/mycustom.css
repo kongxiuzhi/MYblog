@@ -1,0 +1,86 @@
+#pagefooter {
+ background-color:#222;
+ border-color:#080808;
+ height:40px;
+ width:auto;
+ color:#fff;
+ text-align:center;
+ font-size:25px;}
+body {
+	margin-bottom: 50px;
+    color:black;
+}
+.leftside {
+    background-color:#fff;}
+.rightside{
+	height: 100%;
+    background-color:#ffffdf;
+}
+
+.text-center{text-align:center;}
+
+.blockcenter
+{
+   margin:0px auto;}
+
+.blogs { 
+    padding: 30px 0; 
+    position: relative; 
+    border-bottom: #ccc 1px solid; 
+    overflow: hidden;}
+
+.commentbody{
+	border: 1px solid #999;
+	margin: 0px 10px;
+	padding: 5px;
+	height: 100px;
+	width: 80%;
+	overflow: auto;
+}
+
+.pcomment{    
+border:1px solid #999;
+}
+
+.comment{
+border:1px solid transparent;
+}
+.pcomment .comment
+{
+margin:5px;
+padding:3px;
+}
+
+.recommendarticle
+{
+
+	font-size: 20px;
+	background-color: #d1e9e9;
+	border: solid 1px #ccc;
+	padding: 2px;
+	box-shadow: 3px 3px 2px #ccc;
+}
+
+.masterlinks{
+
+		border: solid 1px #ccc;
+	padding: 2px;
+	box-shadow: 3px 3px 2px #ccc;
+}
+
+.links 
+{
+
+	border: solid 1px #ccc;
+	padding: 2px;
+	box-shadow: 3px 3px 2px #ccc;
+}
+
+.lm { background: url({% static 'images/newsbg01.png'%}) no-repeat left center }
+.dtime { background: url({% static 'images/newsbg02.png'%}) no-repeat left center }
+.viewnum { background: url({% static 'images/newsbg04.png'%}) no-repeat left center }
+.pingl { background: url({% static 'images/newsbg03.png'%}) no-repeat left center }
+.fleft{float: left;}
+.fright{float: right;}
+
+

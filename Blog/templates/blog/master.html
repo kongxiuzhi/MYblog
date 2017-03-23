@@ -1,0 +1,7 @@
+<div class="row masterlinks">
+	<h3 >业务担当链接</h3>
+    <p>担当具体信息请点击下面的标签</p>
+	{% for mt in master %}
+    <span><a href="{{mt.get_absolute_url}}"><button class="btn btn-primary">{{mt.job}}</button></a></span> &nbsp
+	{% endfor %}
+</div>

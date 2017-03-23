@@ -1,0 +1,89 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block selfcss %}
+ <style type="text/css">
+ 
+ </style>
+{%endblock%}
+
+{% block navbar %}
+    {% include 'blog/navbar.html'%}
+{% endblock %}
+
+{% block leftbar %}
+    {% include "blog/ad.html" %}
+    <div class="row">
+    <p>待解决的问题</p>
+    <ol>
+    {% for myevent in myevents %}
+        <a href="{{myevent.get_absolute_url}}"><li>{{myevent.events}}----{{myevent.eventdetail|truncatechars:30}}</li></a>
+    {% endfor %}
+    </ol>
+    </div>
+    <div class="row">
+    <p>已解决的问题</p>
+    <ol>
+    {% for myevent in myevents_done%}
+        <a href="{{myevent.get_absolute_url}}"><li>{{myevent.events}}----{{myevent.eventdetail|truncatechars:30}}; 
+            {% if not myevent.grade %}
+                 <span style="float: right;color:red;">请您打分 &nbsp&nbsp&nbsp</span>
+            {% else %}
+                 <span style="float: right;color:green;">{{myevent.grade}} &nbsp&nbsp&nbsp</span>
+                 
+            {%endif%}
+        </li></a>
+    {% endfor %}
+    </ol>
+    </div>
+    <div class="row">
+    <p>提交您的问题</p>
+    <form action="{%url 'blog:event' %}" role=form method="post">
+          {%csrf_token%}
+        <table>
+            <tr>
+                <td><label>姓名：</label></td>
+                <td>{{ eventform.username }}</td>
+            </tr>
+            <tr>
+                <td><label>工号：</label></td>
+                <td>{{ eventform.jobnum  }}</td>
+            </tr>
+            <tr>
+                <td><label>邮箱：</label></td>
+                <td>{{ eventform.email  }}</td>
+            </tr>
+            <tr>
+                <td><label>电话：</label></td>
+                <td>{{ eventform.mobile }}</td>
+            </tr>
+            <tr>
+                <td><label>地址：</label></td>
+                <td>{{ eventform.address }}</td>
+            </tr>
+            <tr>
+                <td><label>故障类别：</label></td>
+                <td>{{ eventform.events }}</td>
+            </tr>
+            <tr>
+                <td><label>故障简述：</label></td>
+                <td>{{ eventform.eventdetail }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+
+{% endblock %}
+
+{% block rightbar %}
+	{% include 'blog/links.html'%}
+    {% include 'blog/recommendarticle.html' %}
+    {% include 'blog/master.html'%}
+{% endblock %}
+
