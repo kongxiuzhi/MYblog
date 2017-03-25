@@ -345,6 +345,74 @@ django BLOG 总结
 			    open(path_file, 'wb').write(files.file.read()) # 保存图片
 			    return {"error": 0, "url": file_url}
 
+9.apache2 配置
+    1. apache2.conf配置
+        添加 ServerName 127.0.0.1
+    2. 在sites-available中创建网站配置文件
+        mysite.conf
+	<VirtualHost *:80>
+
+	    ServerName www.blog.com
+	    ServerAlias localhost
+	    ServerAdmin xiuzhikong@163.com
+	    
+	#    Alias /media/ /home/py3env/ERP/dms/media/
+	#    Alias /static/ /home/py3env/ERP/dms/static/
+	#    Alias /templates/ /home/py3env/ERP/dms/templates/
+	    Alias /templates/ /home/py3env/Blog/templates/
+	    Alias /static/ /home/py3env/Blog/static/
+	    Alias /media/ /home/py3env/Blog/media/
+
+	    <Directory /home/py3env/Blog/static>
+	      Require all granted
+	    </Directory>
+
+	    <Directory /home/py3env/Blog/templates>
+	      Require all granted
+	    </Directory>
+
+	    <Directory /home/py3env/Blog/media>
+	      Require all granted
+	    </Directory>
+
+
+	#    <Directory /home/py3env/ERP/dms/media>
+	#      Require all granted
+	#    </Directory>
+
+	#    <Directory /home/py3env/ERP/dms/static>
+	#      Require all granted
+	#    </Directory>
+	    
+	#     <Directory /home/py3env/ERP/dms/templates>
+	#      Require all granted
+	#    </Directory>
+
+
+
+
+	    WSGIDaemonProcess localhost python-path=/home/py3env/ERP:/home/py3env/lib/python3.4/site-packages
+	    WSGIProcessGroup localhost
+
+	    WSGIScriptAlias / /home/py3env/Blog/Blog/wsgi.py
+	    <Directory /home/py3env/Blog/Blog>
+	    <Files wsgi.py>
+	     Require all granted
+	    </Files>
+	    </Directory>
+	myproject wsig config
+	import os
+	from django.core.wsgi import get_wsgi_application
+	from os.path import join,dirname,abspath
+	PROJECT_DIR = dirname(dirname(abspath(__file__)))
+	import sys
+	sys.path.insert(0,PROJECT_DIR)
+	os.environ["DJANGO_SETTINGS_MODULE"]= "Blog.settings"
+	application = get_wsgi_application()
+
+
+	
+
 
 
 
