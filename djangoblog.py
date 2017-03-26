@@ -2,8 +2,7 @@
 django BLOG 总结
 
 '''
-
-huanjing
+环境配置	
 	zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel
 	tk-devel python-devel python3-devel gcc make apache2
 	django pillow pytz
