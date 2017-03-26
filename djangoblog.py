@@ -3,6 +3,11 @@ django BLOG 总结
 
 '''
 
+huanjing
+	zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel
+	tk-devel python-devel python3-devel gcc make apache2
+	django pillow pytz
+
 1.setting配置
 
 	DEBUG = True|False
@@ -78,6 +83,12 @@ django BLOG 总结
 				关键是这里：我们还需要在myproject的__init__.py文件中添加如下的内容：
 				import pymusql
 				pymysql.install_as_MySQLdb()
+
+			msql.w002 error
+			DATABASES = {
+					'OPTIONS':{'init_commend':"SET sql_mode='STRICT_TRANS_TABLES'",
+					'charset':'utf8md4',}
+			}
 
 	时区设置：
 		pip install pytz
@@ -264,6 +275,13 @@ django BLOG 总结
 	{%with as%}{%endwith%}
 	{%if is not %}{%elif %}{%else%}{%endif%}
 	{{content|safe|linebreaks|truncatechars|date:'Y-m-d'}}
+
+	deal with 404 500 403 error
+	1.in urls.py define handler
+		handler404 = 'myapp.views.my_custom_pap_404_view'
+	2.in templates create 404.html 500.html
+
+
 7.login logout
 	from django.contrib.auth import logout,login,authenticate
 	from django.contrib.auth.hashers import make_password
@@ -410,8 +428,32 @@ django BLOG 总结
 	os.environ["DJANGO_SETTINGS_MODULE"]= "Blog.settings"
 	application = get_wsgi_application()
 
+	install mod_wsig
+	//make clean 
+	//yuanma install python3 configure --enable-shared make makeinstall
+	sudo apt-get install libapache2-mod-wsgi-py3
+	sudo apt-get install apache2
 
-	
+cache缓存。memcached
+	首先，由于memcached依赖于libevent，到libevent和memcached 的官网下载安装包，
+
+	 1.libevent-dev memcached
+	 然后，安装 python-memcached：
+	 2 pip install python-memcached/ sudo apt-get install python-dev/libmemcached-dev pip install pylibmc
+	 最后，配置好settings.py里CACHES 的配置项：
+	 3 settings
+	 CACHES = {
+	    'default': {
+	        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+	        'LOCATION': '127.0.0.1:11211',
+	            #['172.19.26.240:11211',
+	            #'172.19.26.242:11211',]
+	    			}
+					}
+	4 并在MIDDLEWARE_CLASSES 里面的最前面加上：
+	             'django.middleware.cache.UpdateCacheMiddleware',
+	  在最后面加上：
+	             'django.middleware.cache.FetchFromCacheMiddleware',	
 
 
 
