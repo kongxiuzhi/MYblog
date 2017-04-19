@@ -2,10 +2,14 @@
 django BLOG 总结
 
 '''
-环境配置	
+环境配置
+        sudo apt-get install
 	zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel
-	tk-devel python-devel python3-devel gcc make apache2
-	django pillow pytz
+	
+	tk-devel python-devel python3-devel gcc make pip apache2 libapache2-mod-wsgi-py3 mysql-server mysql-client libmysqlclient-dev
+	postgresql
+	pip install
+	virtualenv django pillow pytz psycopg2
 
 1.setting配置
 
